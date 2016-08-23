@@ -232,13 +232,12 @@ public class MainActivity extends AppCompatActivity {
             AssetManager assetManager = getAssets();
             contentStream = new PDPageContentStream(document, page);
             drawString(contentStream, width, x, y + 3, fontSize, formattedDate, false);
-            float titleWidth = font.getStringWidth(quotation.getVendorName()) / 1000f * fontSize;
 
             //print side lines.
-            contentStream.drawLine(x, y, x, y - length +108);
-            contentStream.drawLine(x + width, y, x + width, y - length +108);
+            drawLine(contentStream,x, y, x, y - length +108);
+            drawLine(contentStream,x + width, y, x + width, y - length +108);
 
-            contentStream.drawLine(x, y, x + width, y);
+            drawLine(contentStream,x, y, x + width, y);
             y -= 100;
 
             InputStream inputStream = assetManager.open("tata.jpg");
@@ -248,10 +247,10 @@ public class MainActivity extends AppCompatActivity {
             //print company name
             float stringWidth = width * 0.5f;
             drawString(contentStream, stringWidth, x + _40_width + 20f, y + 50, 14, quotation.getVendorName(), true);
-            contentStream.drawLine(x + _40_width, y, x + _40_width, y - (20 * 5));
+            drawLine(contentStream,x + _40_width, y, x + _40_width, y - (20 * 5));
 
             for (int i = 0; i < 6; i++) {
-                contentStream.drawLine(x, y, x + width, y);
+                drawLine(contentStream,x, y, x + width, y);
                 if (i > 0) {
                     drawString(contentStream, x + _40_width - 20, x + 10, y + 5, fontSize, fillFirstPart[i - 1], false);
                     drawString(contentStream, x + _40_width - 20, x + _40_width + 10, y + 5, fontSize, customerInfo[i - 1], false);
@@ -259,13 +258,13 @@ public class MainActivity extends AppCompatActivity {
                 y -= 20;
             }
             y -= 20;
-            contentStream.drawLine(x + _35_width, y, x + _35_width, y - 40);
+            drawLine(contentStream,x + _35_width, y, x + _35_width, y - 40);
             stringWidth = font.getStringWidth(basicDetails) / 1000f * fontSize;
             drawString(contentStream, width, x + _50_width - stringWidth / 2, y + 15, 12, basicDetails, true);
-            contentStream.drawLine(x + _50_width, y, x + _50_width, y - 20 * 12+10);
-            contentStream.drawLine(x + _85_width, y, x + _85_width, y - 40);
+            drawLine(contentStream,x + _50_width, y, x + _50_width, y - 20 * 12+10);
+            drawLine(contentStream,x + _85_width, y, x + _85_width, y - 40);
             for (int j = 0; j < 3; j++) {
-                contentStream.drawLine(x, y, x + width, y);
+                drawLine(contentStream,x, y, x + width, y);
                 if (j > 0) {
                     int i = j * 2 - 1;
                     drawString(contentStream, _30_width - 20, x + 10, y + 5, fontSize, fillSecondPart[i - 1], false);
@@ -280,11 +279,11 @@ public class MainActivity extends AppCompatActivity {
             drawString(contentStream, _50_width - 20, x + width * 0.25f - font.getStringWidth(thirdPart[0]) / 2000f * fontSize, y + 15, 12, thirdPart[0], true);
             drawString(contentStream, _50_width - 20, x + width * 0.75f - font.getStringWidth(thirdPart[1]) / 2000f * fontSize, y + 15, 12, thirdPart[1], true);
 
-            contentStream.drawLine(x+_35_width, y, x+_35_width, y - 20 * 8+10);
-            contentStream.drawLine(x+_85_width, y, x+_85_width, startY - length+108);
+            drawLine(contentStream,x+_35_width, y, x+_35_width, y - 20 * 8+10);
+            drawLine(contentStream,x+_85_width, y, x+_85_width, startY - length+108);
             int j=0;
             for (int i = 0; i < 2; i++) {
-                contentStream.drawLine(x, y, x + width, y);
+                drawLine(contentStream,x, y, x + width, y);
                 if (i > 0) {
                     j = i;
                     drawString(contentStream,_35_width, x + 10, y + 5, fontSize, fourthPart[j - 1], false);
@@ -302,7 +301,7 @@ public class MainActivity extends AppCompatActivity {
             drawString(contentStream,_15_width-10f,x+_85_width+10,y+20,fontSize,"Rs.100",false);
 
             for (int i = 0; i < 2; i++) {
-                contentStream.drawLine(x, y, x + width, y);
+                drawLine(contentStream,x, y, x + width, y);
                 if(i==1){
                     drawString(contentStream,_35_width-20f,x+10,y+20,fontSize,fourthPart[4]+String.valueOf(premiumDetail.getOdRate())+"%",true);
                     drawString(contentStream,_35_width-10f,x+_35_width+10,y+20,fontSize,"Rs."+String.valueOf(premiumDetail.getCommercialDiscount()),true);
@@ -312,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 y -= 30;
             }
-            contentStream.drawLine(x, y, x + width, y);
+            drawLine(contentStream,x, y, x + width, y);
             drawString(contentStream,_35_width-20f,x+10,y+20,fontSize,fourthPart[6],false);
             drawString(contentStream,_15_width-10f,x+_35_width+10,y+20,fontSize,"Rs."+String.valueOf(premiumDetail.getTotalPremiumWithoutPremium()),false);
             drawString(contentStream,_35_width-20f,x+_50_width+10,y+20,fontSize,fourthPart[7],false);
@@ -322,13 +321,13 @@ public class MainActivity extends AppCompatActivity {
             drawString(contentStream,_15_width-20f,x+_35_width+10,y+5,fontSize,"Rs."+"100",false);
             drawString(contentStream,_35_width-20f,x+_50_width+10,y+5,fontSize,fourthPart[9],false);
             drawString(contentStream,_15_width-20f,x+_85_width+10,y+5,fontSize,"Rs."+String.valueOf(premiumDetail.getBiFuelCharge()),false);
-            contentStream.drawLine(x, y, x + width, y);
+            drawLine(contentStream,x, y, x + width, y);
             y-=20;
             drawString(contentStream,_35_width-20f,x+10,y+5,fontSize,fourthPart[10],true);
             drawString(contentStream,_15_width-20f,x+_35_width+10,y+5,fontSize,"Rs."+100,true);
             drawString(contentStream,_35_width-20f,x+_50_width+10,y+5,fontSize,fourthPart[11],true);
             drawString(contentStream,_15_width-20f,x+_85_width+10,y+5,fontSize,"Rs."+String.valueOf(premiumDetail.getLiabilityPremium()),true);
-            contentStream.drawLine(x,y,x+width,y);
+            drawLine(contentStream,x,y,x+width,y);
             y-=20;
 
             for(int i=0;i<6;i++){
@@ -353,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void drawLine(PDPageContentStream contentStream,float startX,float startY,float endX,float endY){
         try {
-            contentStream.drawLine(startX, startY, endX, endY);
+            drawLine(contentStream,startX, startY, endX, endY);
         }catch(Exception e){
             e.printStackTrace();
         }
